@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div  th:replace="~{include/top}"></div>
+<section>
+<br>
+<div align="center"  > <h2>게시판 목록보기</h2> </div>
+<div align="center"  > 
+<table border=1 >
+<tr><td>번호</td> <td>이름</td> <td>나이</td> 
+	<td>날짜(String)</td> <td>날짜(Date)</td> </tr>
+
+<tr th:each="m: ${li}"> 
+	<td th:text="${m.idx}" />
+	<td><a th:href="@{/board/boardEdit(idx=${m.idx}, name=${m.name})}" th:text="${m.name}"></a></td> 
+	<td th:text="${m.age}" />
+	<td>
+	[[${m.regdate.substring(0,4)}]]년
+	[[${m.regdate.substring(5,7)}]]월
+	[[${m.regdate.substring(8,10)}]]일
+	</td>
+	<td align="center">
+	[[${#dates.format(m.regdate2, 'yyyy')}]]년
+	[[${#dates.format(m.regdate2, 'MM')}]]월
+	[[${#dates.format(m.regdate2, 'dd')}]]일
+	</td>
+</tr>
+</table>
+
+<form action="/board/getBoardList">
+<select name=ch1>
+	<option value="name">이름</option>
+	<option value="age">나이</option>
+</select>
+<input type=text name="ch2">
+<input type=submit value="검색">
+</form>
+</div>
+
+<br>
+</section>
+
+<div th:replace="~{include/bottom::footer}"></div>
+</body>
+</html>

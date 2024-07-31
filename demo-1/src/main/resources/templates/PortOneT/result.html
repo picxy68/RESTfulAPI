@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>majustory.com(결제화면)</title>
+</head>
+
+<div  th:replace="~{/include/top}"></div>
+<section>
+<br>
+<div align="center">
+    <h2> 이니시스 결제 결과화면 </h2>
+	<h3 th:text="${vo1.mpaynum}"></h3>
+
+<table>
+<tr><td>idx</td> <td>mpaynum</td> <td>mpaymethod</td> <td>mpayproduct</td>
+	<td>mpayprice</td> <td>mpaydate</td> <td>mpaygym</td> <td>gymnum</td> </tr>
+<tr th:each="vo1: ${li}"> 
+	<td th:text="${vo1.idx}" />
+	<td th:text="${vo1.mpaynum}" />
+	<td th:text="${vo1.mpaymethod}" />
+	<td th:text="${vo1.mpayproduct}" />
+	<td th:text="${vo1.mpayprice}" />
+	<td th:text="${vo1.mpaydate}" />
+	<td th:text="${vo1.mpaygym}" />
+	<td th:text="${vo1.gymnum}" />
+</tr>
+
+</table>
+
+</div>
+</section>     
+
+<div  th:replace="~{/include/bottom::footer}"></div>
+</body>

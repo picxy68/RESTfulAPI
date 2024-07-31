@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div  th:replace="~{include/top}"></div>
+
+<script th:inline="javascript">
+function delK(){
+	var idx='[[${m.idx}]]'
+	alert("idx"+idx+"->delete")
+	location.href="/board/delete?idx="+idx;
+}
+</script>
+
+<section>
+<br>
+<div align="center" > <h2>게시판 상세보기</h2> </div>
+<div align="center" >
+<form action="/board/update" th:object="${m}">
+<input type=text name=idx th:value="${m.idx}">
+<table border=1>
+<tr> <td>이름</td> <td><input type=text name=name th:value="${m.name}"></td> </tr>
+<tr> <td>나이</td> <td><input type=text name=age th:value="${m.age}"></td> </tr>
+<tr> <td>특이사항</td> <td><textarea name=etc cols=30 rows=4 th:field="*{etc}"></textarea></td> </tr>
+
+<tr> <td colspan=2 align="center"><input type=submit value="저장하기">
+	<input type="button" value="삭제하기" th:onClick="delK()"></td></tr>
+</table>
+</form>
+
+</div>
+<br>
+</section>
+
+<div  th:replace="~{include/bottom::footer}"></div>
+</body>
+</html>
